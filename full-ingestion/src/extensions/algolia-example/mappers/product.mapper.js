@@ -1,4 +1,4 @@
-const CURRENCY_CODES = ['USD', 'EUR'];
+const CURRENCY_CODES = ['USD', 'EUR','AUD','NZD'];
 export default function map(product, locale) {
   let mappedProduct = {};
   let categories = product.categories.map((category) => {
@@ -60,6 +60,8 @@ function transformPrices(prices) {
 
 function transformVariant(variant, locale) {
   let images = variant.images.map((image) => image.url);
+  let displayImages = variant.images.map((image) => image.url.replace(".jpeg", "-large.jpeg"));
+
   let attributes = transformAttributes(variant.attributes, locale);
   let prices;
   let discountedPrices;
@@ -76,6 +78,7 @@ function transformVariant(variant, locale) {
     id: variant.id,
     sku: variant.sku,
     images,
+    displayImages,
     attributes,
     prices: !prices ? undefined : prices,
     discountedPrices: !discountedPrices ? undefined : discountedPrices,
