@@ -1,5 +1,6 @@
 const CURRENCY_CODES = ['USD', 'EUR','AUD','NZD'];
 export default function map(product, locale) {
+  logger.info("Product data to map: " + JSON.stringify(product))
   let mappedProduct = {};
   let categories = product.categories.map((category) => {
     return {
