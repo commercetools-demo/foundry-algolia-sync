@@ -1,5 +1,4 @@
 import { createApiRoot } from './create.client.js';
-import { apiRoot } from './create.client.js';
 
 export const productQueryArgs = {
   staged: false, expand: ['productSelection', 'taxCategory', 'productType', 'categories[*]']
@@ -13,9 +12,7 @@ const expandPaths = [
 ];
 
 export async function getProductProjectionById(productId) {
-  console.log(apiRoot)
-  return await apiRoot
-    .withProjectKey({ projectKey:'retail-anz' })
+  return await createApiRoot()
     .productProjections()
     .withId({
       ID: Buffer.from(productId).toString(),
